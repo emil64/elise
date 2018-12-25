@@ -2,5 +2,5 @@
 #include <stdio.h>
 
 int main(){
-     setbuf(stdout, NULL);
+     setbuf(stdout, NULL);ds
 }
