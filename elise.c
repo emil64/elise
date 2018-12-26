@@ -27,9 +27,9 @@ int main(){
 
             printf("\n\nInformation for %s\n",de->d_name);
             printf("---------------------------\n");
-            printf("File Size: \t\t%d bytes\n",fileStat.st_size);
-            printf("Number of Links: \t%d\n",fileStat.st_nlink);
-            printf("File inode: \t\t%d\n",fileStat.st_ino);
+            printf("File Size: \t\t%ld bytes\n",fileStat.st_size);
+            printf("Number of Links: \t%lu\n",fileStat.st_nlink);
+            printf("File inode: \t\t%lu\n",fileStat.st_ino);
 
             printf("File Permissions: \t");
             printf( (S_ISDIR(fileStat.st_mode)) ? "d" : "-");
