@@ -5,6 +5,21 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
+#include <stdbool.h>
+
+bool isFile(char *name){
+    printf("Dirctory test name: %s\n", name);
+    DIR* directory = opendir(name);
+    if(directory != NULL){
+        closedir(directory);
+        return true;
+    }
+    if(errno == ENOTDIR){
+        return false;
+    }
+    return false;
+}
 
 void readR(char *path){
     DIR *dr = opendir(path);
@@ -21,7 +36,11 @@ void readR(char *path){
             printf("\n\n\n%s : %lu \n", de->d_name, de->d_ino);
             struct stat fileStat;
             stat(de->d_name,&fileStat);
-            if(S_ISDIR(fileStat.st_mode)) printf("This file is a deirectry!\n");
+            char pathName[200];
+            strcpy(pathName, path);
+            strcat(pathName, "/");
+            strcat(pathName, de->d_name);
+            if(!isFile(pathName)) printf("This file is a deirectry!\n");
             else  printf("This file is not a deirectry!\n");
             if(strcmp(de->d_name, ".") == 0 || strcmp(de->d_name, "..") == 0)
                 continue;
@@ -41,16 +60,10 @@ void readR(char *path){
                 printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
                 printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
                 printf("\n");
-                if(S_ISDIR(fileStat.st_mode)) printf("This file is a deirectry!\n");
-                else  printf("This file is not a deirectry!\n");
             }
             else {
-                char newPath[200];
-                strcpy(newPath, path);
-                strcat(newPath, "/");
-                strcat(newPath, de->d_name);
-                printf("\n\nEntering dir: %s\n\n", newPath);
-                readR(newPath);
+                printf("\n\nEntering dir: %s\n\n", pathName);
+                readR(pathName);
             }
 
     }
