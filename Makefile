@@ -10,13 +10,13 @@ default: elisa
 ifdef Windows
 
 %: %.c
-	clang -Dtest_$@ -std=c11 -Wall -pedantic -g $@.c -o $@.exe
+	clang -Dtest_$@ -std=c11 -Wall -pedantic -g $@.c -o $@.exe -lssl -lcrypto
 
 # For Linux/MacOS, include the advanced debugging options
 else
 
 %: %.c
-	gcc-8 -Dtest_$@ -std=c18 -Wall -pedantic -g $@.c -o $@ \
-	    -fsanitize=undefined -fsanitize=address
+	gcc -std=c11 -Wall -pedantic -g $@.c -o $@ \
+	    -fsanitize=undefined -fsanitize=address  -lssl -lcrypto
 
 endif
