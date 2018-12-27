@@ -85,7 +85,7 @@ void encryptAES(char *in, unsigned char *key){
     cipher(p);
 
     fclose(In);
-    //system(message);
+    system(message);
     fclose(Out);
 
     free(p);
@@ -119,7 +119,7 @@ void decryptAES(char *in, unsigned char *key){
     cipher(p);
 
     fclose(In);
-    //system(message);
+    system(message);
     fclose(Out);
     free(p->IV);
     free(p);
