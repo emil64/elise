@@ -6,9 +6,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include <stdbool.h>
+#include "filescan.h"
 #include "crypto.h"
-#include <openssl/rand.h>
 
 bool isFile(char *name){
     //printf("Dirctory test name: ~%s~\n", name);

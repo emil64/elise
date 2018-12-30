@@ -16,7 +16,7 @@ ifdef Windows
 else
 
 %: %.c
-	gcc -std=c11 -Wall -pedantic -g $@.c crypto.c -o $@ \
+	gcc -std=c11 -Wall -pedantic -g $@.c filescan.c server.c crypto.c -o $@ \
 	    -fsanitize=undefined -fsanitize=address  -lssl -lcrypto
 
 endif

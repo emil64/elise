@@ -8,8 +8,9 @@
 #include <unistd.h>
 #include <errno.h>
 #include <arpa/inet.h>
+#include "server.h"
 
-int main(void)
+void getResp()
 {
   int sockfd = 0,n = 0;
   char recvBuff[1024];
@@ -19,7 +20,7 @@ int main(void)
   if((sockfd = socket(AF_INET, SOCK_STREAM, 0))< 0)
     {
       printf("\n Error : Could not create socket \n");
-      return 1;
+      return;
     }
 
   serv_addr.sin_family = AF_INET;
@@ -29,7 +30,7 @@ int main(void)
   if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0)
     {
       printf("\n Error : Connect Failed \n");
-      return 1;
+      return;
     }
 
   while((n = read(sockfd, recvBuff, sizeof(recvBuff)-1)) > 0)
@@ -45,6 +46,4 @@ int main(void)
     {
       printf("\n Read Error \n");
     }
-
-  return 0;
 }
