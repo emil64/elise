@@ -9,7 +9,7 @@
 #include <stdbool.h>
 
 bool isFile(char *name){
-    printf("Dirctory test name: ~%s~\n", name);
+    //printf("Dirctory test name: ~%s~\n", name);
     DIR* directory = opendir(name);
     if(directory != NULL){
         closedir(directory);
@@ -23,6 +23,8 @@ bool isFile(char *name){
     return true;
 }
 
+int files = 0;
+
 void readR(char *path){
     DIR *dr = opendir(path);
     struct dirent *de;
@@ -35,6 +37,7 @@ void readR(char *path){
     // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
     // for readdir()
     struct stat fileStat;
+
     while ((de = readdir(dr)) != NULL){
 
             char pathName[200];
@@ -43,17 +46,17 @@ void readR(char *path){
             strcat(pathName, de->d_name);
 
 
-            printf("\n\n\n%s : %lu \n", de->d_name, de->d_ino);
+            //printf("\n\n\n%s : %lu \n", de->d_name, de->d_ino);
             fileStat.st_mode = 0;
             stat(pathName,&fileStat);
 
-            if(!isFile(pathName)) printf("This file is a deirectry!\n");
-            else  printf("This file is not a deirectry!\n");
+            //if(!isFile(pathName)) printf("This file is a deirectry!\n");
+            //else  printf("This file is not a deirectry!\n");
 
             if(strcmp(de->d_name, ".") == 0 || strcmp(de->d_name, "..") == 0)
                 continue;
             if(isFile(pathName)){
-                printf("Information for %s\n",de->d_name);
+                /*printf("Information for %s\n",de->d_name);
                 printf("---------------------------\n");
                 printf("Path : %s\n", path);
                 printf("File Permissions: \t");
@@ -67,10 +70,11 @@ void readR(char *path){
                 printf( (fileStat.st_mode & S_IROTH) ? "r" : "-");
                 printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
                 printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
-                printf("\n");
+                printf("\n"); */
+                files++;
             }
             else {
-                printf("\n\nEntering dir: ~%s~\n\n", pathName);
+                //printf("\n\nEntering dir: ~%s~\n\n", pathName);
                 readR(pathName);
             }
 
@@ -82,7 +86,8 @@ void readR(char *path){
 int main(int n, char *args[n]){
      setbuf(stdout, NULL);
        // Pointer for directory entry
-     readR("/home/emil/Facultate/Imperative Programming/text");
+     readR("/home");
+     printf("files %d\n", files);
     // opendir() returns a pointer of DIR type.
     return 0;
 }
