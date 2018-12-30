@@ -3,5 +3,6 @@
 #include "filescan.h"
 
 int main(){
-    printf("hello world!");
+    key_id ki;
+    getKeyId(&ki);
 }

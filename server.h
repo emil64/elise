@@ -4,3 +4,5 @@ struct key_id{
 };
 
 typedef struct key_id key_id;
+
+void getKeyId(key_id *ki);
