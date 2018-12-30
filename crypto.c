@@ -30,6 +30,10 @@ struct Params{
 
 typedef struct Params Params;
 
+void newKey(unsigned char *k){
+    RAND_bytes(k, sizeof(k));
+}
+
 void cipher(Params *p){
 
 
@@ -155,13 +159,13 @@ RSA *createRSA(unsigned char *key, bool public){
     return rsa;
 }
 
-void public_encrypt(unsigned char *text, int len, unsigned char * key, unsigned char *encrypted){
+void public_encrypt(unsigned char *text, int len, unsigned char *key, unsigned char *encrypted){
 
     RSA *rsa = createRSA(key, true);
     RSA_public_encrypt(len, text, encrypted, rsa, RSA_PKCS1_PADDING);
 }
 
-void private_decrypt(unsigned char * encText, int len,unsigned char * key, unsigned char *decrypted){
+void private_decrypt(unsigned char * encText, int len,unsigned char *key, unsigned char *decrypted){
 
     RSA *rsa = createRSA(key, false);
     RSA_private_decrypt(len, encText, decrypted, rsa, RSA_PKCS1_PADDING);

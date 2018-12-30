@@ -2,7 +2,14 @@
 #include "server.h"
 #include "filescan.h"
 
-int main(){
+void encrypt(){
     key_id ki;
     getKeyId(&ki);
+    unsigned char key[32];
+    newKey(*k);
+}
+
+int main(){
+
+
 }
