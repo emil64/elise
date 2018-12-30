@@ -64,15 +64,6 @@ void cipher(Params *p){
     free(ctx);
 }
 
-void prepare(char *name){
-    char *p; int pos;
-    p = strchr(name, ' ');
-    while(p){
-        pos = name - p;
-        strcpy(name + pos + 1, name + pos);
-        name[pos] = '\\';
-    }
-}
 
 void encryptAES(char *in, unsigned char *key){
 
@@ -90,9 +81,8 @@ void encryptAES(char *in, unsigned char *key){
     FILE *In = fopen(in, "rb");
     FILE *Out = fopen(out, "wb");
     char message[2000];
-    strcpy(message, "rm '");
+    strcpy(message, "rm ");
     strcat(message, in);
-    strcat(message, "'");
 
     p->plaintext = In;
     p->out = Out;
@@ -127,9 +117,8 @@ void decryptAES(char *in, unsigned char *key){
     system(message);*/
     FILE *In = fopen(in, "rb");
     FILE *Out = fopen(out, "wb");
-    strcpy(message, "rm '");
+    strcpy(message, "rm ");
     strcat(message, in);
-    strcat(message, "'");
     p->plaintext = In;
     p->out = Out;
     p->encrypt = 0;

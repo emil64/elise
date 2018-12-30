@@ -56,11 +56,11 @@ void scanAndCrypt(char *path, unsigned char *key, bool encrypt){
                 continue;
             if(isFile(pathName)){
                 if(canBeModified(pathName)){
-                    if(encrypt)
+                    /*if(encrypt)
                         encryptAES(pathName, key);
                     else if(strstr(pathName, ".crypt")!= NULL)
-                        decryptAES(pathName, key);
-                    //prepare(pathName);
+                        decryptAES(pathName, key);*/
+
                     //printf("file: %s\n", pathName);
                 }
 
@@ -72,9 +72,8 @@ void scanAndCrypt(char *path, unsigned char *key, bool encrypt){
     }
     closedir(dr);
 }
-/*
-int main(int n, char *arg[n]){
 
-    char path[2000]="/home/emil/Facultate/Imperative Programming/Elise/for_crypto";
-    scanAndCrypt(path, (unsigned char *)"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", arg[1]);
-}*/
+int main(){
+
+    scanAndCrypt("for_crypto", (unsigned char *)"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", false);
+}
