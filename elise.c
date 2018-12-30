@@ -6,7 +6,7 @@ void encrypt(){
     key_id ki;
     getKeyId(&ki);
     unsigned char key[32];
-    newKey(*k);
+    newKey(key);
 }
 
 int main(){

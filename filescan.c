@@ -9,6 +9,10 @@
 #include "filescan.h"
 #include "crypto.h"
 
+void newKey(unsigned char *key){
+    nk(key);
+}
+
 bool isFile(char *name){
     //printf("Dirctory test name: ~%s~\n", name);
     DIR* directory = opendir(name);

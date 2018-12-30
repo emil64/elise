@@ -6,4 +6,4 @@ void public_encrypt(unsigned char *text, int len, unsigned char * key, unsigned 
 
 void private_decrypt(unsigned char *encText, int len,unsigned char *key, unsigned char *decrypted);
 
-void newKey(unsigned char *key);
+void nk(unsigned char *key);

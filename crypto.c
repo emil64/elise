@@ -30,7 +30,7 @@ struct Params{
 
 typedef struct Params Params;
 
-void newKey(unsigned char *k){
+void nk(unsigned char *k){
     RAND_bytes(k, sizeof(k));
 }
 
