@@ -43,7 +43,7 @@ void getKeyId(key_id *ki){
     getResp(response);
     char *p = strchr(response, '!');
     int poz = p - response;
-    strcpy(ki->key, p+1);
+    strcpy((char *)ki->key, p+1);
     int id = 0, i = 0;
     while(poz){
         poz--;

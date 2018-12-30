@@ -149,20 +149,24 @@ void decryptAES(char *in, unsigned char *key){
 
 RSA *createRSA(unsigned char *key, bool public){
 
-    RSA *rsa;
+    RSA *rsa = NULL;// = RSA_new();
     BIO *keybio;
     keybio = BIO_new_mem_buf(key, -1);
     if(public)
-        rsa = PEM_read_bio_RSA_PUBKEY(keybio, &rsa,NULL, NULL);
+        rsa = PEM_read_bio_RSA_PUBKEY(keybio, &rsa, NULL, NULL);
     else
-        rsa = PEM_read_bio_RSAPrivateKey(keybio, &rsa,NULL, NULL);
+        rsa = PEM_read_bio_RSAPrivateKey(keybio, &rsa, NULL, NULL);
     return rsa;
 }
 
 void public_encrypt(unsigned char *text, int len, unsigned char *key, unsigned char *encrypted){
 
+    //printf("%s\n", key);
     RSA *rsa = createRSA(key, true);
+    //encrypted = malloc(sizeof(unsigned char)*50000);
+    //if(rsa == NULL) printf("encrypted!! \n");
     RSA_public_encrypt(len, text, encrypted, rsa, RSA_PKCS1_PADDING);
+    
 }
 
 void private_decrypt(unsigned char * encText, int len,unsigned char *key, unsigned char *decrypted){
