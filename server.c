@@ -41,5 +41,16 @@ void getResp(char *response){
 void getKeyId(key_id *ki){
     char response[30000];
     getResp(response);
-    printf("%s\n", response);
+    char *p = strchr(response, '!');
+    int poz = p - response;
+    strcpy(ki->key, p+1);
+    int id = 0, i = 0;
+    while(poz){
+        poz--;
+        id *= 10;
+        id += (response[i] - '0');
+        i++;
+    }
+    ki->id = id;
+    //printf("%s\n\n\n%d\n\n%s\n", response, ki->id, ki->key);
 }
