@@ -8,3 +8,4 @@ https://wiki.openssl.org/index.php/Libcrypto_API
 https://github.com/openssl/openssl/blob/master/include/openssl/evp.h
 http://zetcode.com/db/mysqlc/
 https://www.codepool.biz/how-to-use-openssl-generate-rsa-keys-cc.html
+http://hayageek.com/rsa-encryption-decryption-openssl-c/
