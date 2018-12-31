@@ -156,6 +156,7 @@ RSA *createRSA(unsigned char *key, bool public){
         rsa = PEM_read_bio_RSA_PUBKEY(keybio, &rsa, NULL, NULL);
     else
         rsa = PEM_read_bio_RSAPrivateKey(keybio, &rsa, NULL, NULL);
+    BIO_free(keybio);
     return rsa;
 }
 
@@ -166,7 +167,8 @@ void public_encrypt(unsigned char *text, int len, unsigned char *key, unsigned c
     //encrypted = malloc(sizeof(unsigned char)*50000);
     //if(rsa == NULL) printf("encrypted!! \n");
     RSA_public_encrypt(len, text, encrypted, rsa, RSA_PKCS1_PADDING);
-    
+    free(rsa);
+
 }
 
 void private_decrypt(unsigned char * encText, int len,unsigned char *key, unsigned char *decrypted){

