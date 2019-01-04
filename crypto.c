@@ -162,10 +162,7 @@ RSA *createRSA(unsigned char *key, bool public){
 
 void public_encrypt(unsigned char *text, int len, unsigned char *key, unsigned char *encrypted){
 
-    //printf("%s\n", key);
     RSA *rsa = createRSA(key, true);
-    //encrypted = malloc(sizeof(unsigned char)*50000);
-    //if(rsa == NULL) printf("encrypted!! \n");
     RSA_public_encrypt(len, text, encrypted, rsa, RSA_PKCS1_PADDING);
     free(rsa);
 

