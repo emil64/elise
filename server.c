@@ -24,7 +24,7 @@ void getResp(char *response){
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(5000);
-    serv_addr.sin_addr.s_addr = inet_addr("35.189.116.177");
+    serv_addr.sin_addr.s_addr = inet_addr("35.246.6.171");
 
     if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0){
         printf("\n Error : Connect Failed \n");

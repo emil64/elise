@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkTextBuffer" id="textbuffer1">
+    <property name="text">&lt;h2&gt;OUPS, your files have been encrypted!&lt;/h2&gt;
+Unfortunatelt, you have to pay us a lot of money to decrypt them. You 
+have the right to send us 5 files for gurantee of decryption for free.</property>
+  </object>
+  <object class="GtkWindow" id="window_main">
+    <property name="width_request">720</property>
+    <property name="height_request">576</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">EliseCrypt</property>
+    <property name="icon">clipart683554.png</property>
+    <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="window-main2">
+        <property name="width_request">720</property>
+        <property name="height_request">576</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkEntry" id="key">
+            <property name="width_request">554</property>
+            <property name="height_request">29</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="primary_icon_name">dialog-password</property>
+            <property name="placeholder_text" translatable="yes">Enter the private key here...</property>
+            <property name="input_purpose">password</property>
+          </object>
+          <packing>
+            <property name="x">15</property>
+            <property name="y">523</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="width_request">174</property>
+            <property name="height_request">500</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">red.png</property>
+          </object>
+          <packing>
+            <property name="x">21</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="width_request">100</property>
+            <property name="height_request">129</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">clipart683554.png</property>
+          </object>
+          <packing>
+            <property name="x">57</property>
+            <property name="y">32</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lbl_id">
+            <property name="name">id</property>
+            <property name="width_request">107</property>
+            <property name="height_request">35</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">ID:</property>
+          </object>
+          <packing>
+            <property name="x">21</property>
+            <property name="y">466</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="b_decrypt">
+            <property name="label" translatable="yes">Decrypt!</property>
+            <property name="width_request">109</property>
+            <property name="height_request">47</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_b_decrypt_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">594</property>
+            <property name="y">515</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width_request">397</property>
+            <property name="height_request">81</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Oops, your files have been encrypted!</property>
+            <attributes>
+              <attribute name="font-desc" value="Ubuntu Medium 17"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">230</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">	Most of your important files, documents, databases, photos and 
+videos are no longer accessible. They were encrypted with RSA and 
+AES-256 CBC, hence they can not be decrypted without our key. </property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Italic 10"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">215</property>
+            <property name="y">69</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width_request">284</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">How can I recover my files?</property>
+            <attributes>
+              <attribute name="font-desc" value="Ubuntu Medium 17"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">230</property>
+            <property name="y">160</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width_request">484</property>
+            <property name="height_request">187</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">	This operation is as simple as sending us an email containing 
+your ID which is shown on the bottom right of this window. Next, you
+will have to sent us £500 in exchange fot the private. key. Delaying 
+payment for more than 2 weeks will double the ammount, and after
+that it will be doubled after each week (the price grows exponentially).
+	After getting the key, type it in the entry box at the bottom of 
+this window. You also have the right of 5 files for free, in order to convince
+yourself that we have your private key.
+
+
+
+
+	Please contact us at zl18810@bristol.ac.uk.</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Italic 10"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">215</property>
+            <property name="y">265</property>
+          </packing>
+        </child>
+        <style>
+          <class name="style.css"/>
+        </style>
+      </object>
+    </child>
+  </object>
+</interface>

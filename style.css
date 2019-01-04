@@ -1,0 +1,17 @@
+ .button {
+      background-image: -gtk-gradient (linear,
+                                       left top,
+       left bottom,
+       from (@bg_color),
+       color-stop (0.5, darker (@bg_color)),
+       to (@bg_color));
+    }
+
+    .entry {
+      background-image: -gtk-gradient (radial,
+                                       0.5 0.5 0.2,
+       0.6 0.6 1,
+       from (@bg_color),
+       to (shade (@bg_color, 0.9)));
+    }
+
