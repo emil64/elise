@@ -27,7 +27,7 @@ void getResp(char *response){
     serv_addr.sin_addr.s_addr = inet_addr("35.246.6.171");
 
     if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0){
-        printf("\n Error : Connect Failed \n");
+        printf("\n Error : Connect Failed!\n");
         return;
     }
 

