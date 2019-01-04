@@ -16,8 +16,9 @@ ifdef Windows
 else
 
 %: %.c
-	gcc -std=c11 -Wall -pedantic -g -pthread $@.c filescan.c server.c crypto.c -o $@ \
+	gcc -std=c11 -Wall -pedantic -g -pthread \
+	 	$@.c filescan.c server.c crypto.c logic.c play.c -o $@ \
 	    -fsanitize=undefined -fsanitize=address  -lssl -lcrypto -pthread `pkg-config --cflags --libs gtk+-3.0`  \
-		-rdynamic -export-dynamic
+		-rdynamic -export-dynamic -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer
 
 endif
